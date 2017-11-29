@@ -10,6 +10,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import static org.apache.commons.io.IOUtils.LINE_SEPARATOR_UNIX;
+import static org.apache.commons.io.IOUtils.LINE_SEPARATOR_WINDOWS;
+
 public abstract class Parser {
 
     protected List<String> headerColumnNames = new LinkedList<>();

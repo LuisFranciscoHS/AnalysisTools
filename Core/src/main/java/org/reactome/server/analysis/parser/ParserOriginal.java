@@ -1,5 +1,6 @@
 package org.reactome.server.analysis.parser;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -10,6 +11,9 @@ import org.reactome.server.analysis.parser.response.Response;
 import java.io.IOException;
 import java.util.*;
 import java.util.regex.Pattern;
+
+import static org.apache.commons.io.IOUtils.LINE_SEPARATOR_UNIX;
+import static org.apache.commons.io.IOUtils.LINE_SEPARATOR_WINDOWS;
 
 /**
  * Parser for AnalysisData tool
@@ -73,7 +77,7 @@ public class ParserOriginal extends Parser {
             errorResponses.add(Response.getMessage(Response.EMPTY_FILE));
         } else {
             // Split lines
-            String[] lines = input.split("[\r\n]"); // Do not add + here. It will remove empty lines
+            String[] lines = input.split("\\R"); // Do not add + here. It will remove empty lines
 
             // check and parser whether one line file is present.
             int uniqueLineRow = isOneLineFile(lines);

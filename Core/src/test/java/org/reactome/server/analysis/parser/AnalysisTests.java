@@ -35,6 +35,9 @@ public class AnalysisTests {
     private static final String POTENTIAL_HEADER = PATH.concat("potential_header.txt");
     private static final String SPACES_ON_HEADER = PATH.concat("spaces_on_header.txt");
     private static final String CORRECT_FILE = PATH.concat("correct_file.txt");
+    private static final String CORRECT_FILE_UNIX = PATH.concat("correct_file_Unix.txt");
+    private static final String CORRECT_FILE_MAC = PATH.concat("correct_file_Mac.txt");
+    private static final String CORRECT_FILE_WINDOWS = PATH.concat("correct_file_Windows.txt");
     private static final String COLUMN_MISMATCH_HEADER = PATH.concat("column_mismatch_header.txt");
     private static final String COLUMN_MISMATCH_CONTENT = PATH.concat("column_mismatch_content.txt");
     private static final String MULTIPLE_WARNINGS = PATH.concat("multiple_warnings.txt");
@@ -895,5 +898,55 @@ public class AnalysisTests {
         Assert.assertEquals(2, p.getAnalysisIdentifierSet().size());
         Assert.assertEquals(1, p.getWarningResponses().size());
     }
+
+    @Test
+    public void testCorrectFileUnix() {
+        String data = getString(CORRECT_FILE_UNIX);
+        Parser p = createParser(data);
+        try {
+            Assert.assertEquals(p.getClass(), ParserOriginal.class);
+            p.parseData(data);
+        } catch (ParserException e) {
+            Assert.fail(CORRECT_FILE_UNIX + " has failed.");
+        }
+
+        Assert.assertEquals(6, p.getHeaderColumnNames().size());
+        Assert.assertEquals(9, p.getAnalysisIdentifierSet().size());
+        Assert.assertEquals(0, p.getWarningResponses().size());
+    }
+
+    @Test
+    public void testCorrectFileMac() {
+        String data = getString(CORRECT_FILE_MAC);
+        Parser p = createParser(data);
+        try {
+            Assert.assertEquals(p.getClass(), ParserOriginal.class);
+            p.parseData(data);
+        } catch (ParserException e) {
+            Assert.fail(CORRECT_FILE_MAC + " has failed.");
+        }
+
+        Assert.assertEquals(6, p.getHeaderColumnNames().size());
+        Assert.assertEquals(9, p.getAnalysisIdentifierSet().size());
+        Assert.assertEquals(0, p.getWarningResponses().size());
+    }
+
+    @Test
+    public void testCorrectFileWindows() {
+        String data = getString(CORRECT_FILE_WINDOWS);
+        Parser p = createParser(data);
+        try {
+            Assert.assertEquals(p.getClass(), ParserOriginal.class);
+            p.parseData(data);
+        } catch (ParserException e) {
+            Assert.fail(CORRECT_FILE_WINDOWS + " has failed.");
+        }
+
+        Assert.assertEquals(6, p.getHeaderColumnNames().size());
+        Assert.assertEquals(9, p.getAnalysisIdentifierSet().size());
+        Assert.assertEquals(0, p.getWarningResponses().size());
+    }
+
+
 }
 
